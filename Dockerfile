@@ -1,5 +1,5 @@
 FROM maven:3.8.4-openjdk-8 AS build
-COPY ..
+COPY . .
 RUN mvn clean install -DskipTests
 
 FROM openjdk:8-jdk-alpine
