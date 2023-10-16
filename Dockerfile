@@ -12,5 +12,5 @@ RUN echo 'Identified Dockerfile'
 FROM tomcat:8.0-alpine
 COPY --from=build /target/self-notes-0.0.1-SNAPSHOT.war usr/local/tomcat/webapps/ROOT.war
 EXPOSE 8081
-#ENTRYPOINT ["usr/local/tomcat/catalina.sh", "run"]
+#ENTRYPOINT ["usr/local/tomcat/catalina.sh", "restart"]
 CMD ["catalina.sh", "run"]
