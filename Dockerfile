@@ -11,3 +11,4 @@ RUN echo 'Identified Dockerfile'
 
 FROM tomcat
 COPY --from=build /target/self-notes-0.0.1-SNAPSHOT.war usr/local/tomcat/webapps/ROOT.war
+CMD ["catalina.sh", "run"]
