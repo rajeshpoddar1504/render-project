@@ -6,25 +6,25 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Java</span></a>
+        <a class="nav-link" href="/java">Java</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Springboot</a>
+        <a class="nav-link" href="/springboot.js">Springboot</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">GIT</a>
+        <a class="nav-link" href="/git">GIT</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">HTML</a>
+        <a class="nav-link" href="/html">HTML</a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="#">CSS</a>
+        <a class="nav-link" href="/css">CSS</a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="#">Microservices</a>
+        <a class="nav-link" href="/microservices">Microservices</a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="#">Database</a>
+        <a class="nav-link" href="/database">Database</a>
       </li>
     </ul>
   </div>
