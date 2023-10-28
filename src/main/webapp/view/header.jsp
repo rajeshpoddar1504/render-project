@@ -9,7 +9,7 @@
         <a class="nav-link" href="/java">Java</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/springboot.js">Springboot</a>
+        <a class="nav-link" href="/springboot">Springboot</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/git">GIT</a>

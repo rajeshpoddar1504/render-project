@@ -3,15 +3,7 @@
     
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../css/main.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>   
-<title>Insert title here</title>
-</head>
+<jsp:include page="head.jsp"></jsp:include>
 <body>
 <jsp:include page="header.jsp" />
 
@@ -52,13 +44,15 @@ git branch <em>	List branches (the asterisk denotes the current branch)</em><br>
 git branch -a <em>	List all branches (local and remote)</em><br>
 git branch [branch name]	<em>Create a new branch</em><br>
 git branch -d [branch name]	<em>Delete a branch</em><br>
-git push origin --delete [branch name] <em>	Delete a remote branch</em><br>
-git checkout -b [branch name]	<em>Create a new branch and switch to it</em><br>
-git checkout -b [branch name] origin/[branch name]	<em>Clone a remote branch and switch to it</em><br>
-git branch -m [old branch name] [new branch name]	<em>Rename a local branch</em><br>
+git push origin --delete [branch name] <em>	Delete a remote branch</em><br><br>
+
 git checkout [branch name]	<em>Switch to a branch</em><br>
 git checkout -	<em>Switch to the branch last checked out</em><br>
-git checkout -- [file-name.txt]	<em>Discard changes to a file</em><br>
+git checkout -b [branch name]	<em>Create a new branch and switch to it</em><br>
+git checkout -b [branch name] origin/[branch name]	<em>Clone a remote branch and switch to it [create a branch locally if doesn't exist]</em><br>
+git branch -m [old branch name] [new branch name]	<em>Rename a local branch</em><br>
+git checkout -- [file-name.txt]	<em>Discard changes to a file</em><br><br>
+
 git merge [branch name]	<em>Merge a branch into the active branch</em><br>
 git merge [source branch] [target branch]	<em>Merge a branch into a target branch</em><br>
 git stash	<em>Stash changes in a dirty working directory</em><br>
@@ -71,12 +65,14 @@ Sharing & Updating Projects
 <h5>
 Command	Description
 </h5>
-git push origin [branch name] <em>	Push a branch to your remote repository</em><br>
-git push -u origin [branch name]<em>	Push changes to remote repository (and remember the branch)</em><br>
 git push	<em>Push changes to remote repository (remembered branch)</em><br>
-git push origin --delete [branch name]	<em>Delete a remote branch</em><br>
+git push origin [branch name] <em>	Push a branch to your remote repository</em><br>
+git push -u origin [branch name]<em>	Push changes to remote repository (and remember the branch) [if remote branch doesn't exist it get created]</em><br>
+git push origin --delete [branch name]	<em>Delete a remote branch</em><br><br>
+
 git pull	<em>Update local repository to the newest commit</em><br>
-git pull origin [branch name]	<em>Pull changes from remote repository</em><br>
+git pull origin [branch name]	<em>Pull changes from remote repository</em><br><br>
+
 git remote add origin ssh://git@github.com/[username]/[repository-name].git<em>	Add a remote repository</em><br>
 git remote set-url origin ssh://git@github.com/[username]/[repository-name].git<em>	Set a repository's origin branch to SSH</em><br>
 
