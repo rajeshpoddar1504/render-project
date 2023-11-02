@@ -23,6 +23,10 @@ public class ControllerClass {
 	public String getMicroservices() {
 		return "microservices";
 	}
+	@GetMapping("springboot")
+	public String getSpringboot() {
+		return "springboot";
+	}
 	@GetMapping("html")
 	public String getHtml() {
 		return "html";
