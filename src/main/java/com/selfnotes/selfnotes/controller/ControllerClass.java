@@ -1,7 +1,13 @@
 package com.selfnotes.selfnotes.controller;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Controller
@@ -38,6 +44,21 @@ public class ControllerClass {
 	@GetMapping("database")
 	public String getDatabase() {
 		return "database";
+	}
+	
+	@GetMapping("add-notes")
+	public String getNotes() {
+		return "notepad";
+		
+	}
+	@PostMapping("/save-notes")
+	public String saveNotes(@RequestParam String notesdata) throws IOException {
+		File notesFile=new File("src/main/resources/notepad-store.txt");
+		FileWriter fileWriter =new FileWriter(notesFile,true);
+		
+		fileWriter.write(notesdata);
+		fileWriter.close();
+		return "success";
 	}
 	
 }
