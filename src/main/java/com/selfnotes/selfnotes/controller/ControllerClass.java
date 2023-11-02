@@ -3,15 +3,20 @@ package com.selfnotes.selfnotes.controller;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 public class ControllerClass {
+	@Autowired
+	ResourceLoader resourceLoader;
 	
 	@GetMapping("home")
 	public String getHome() {
@@ -53,8 +58,13 @@ public class ControllerClass {
 	}
 	@PostMapping("/save-notes")
 	public String saveNotes(@RequestParam String notesdata) throws IOException {
-		File notesFile=new File("src/main/resources/notepad-store.txt");
-		FileWriter fileWriter =new FileWriter(notesFile,true);
+		
+		Resource resource = resourceLoader.getResource("classpath:notepad-store.txt"); 
+		/*
+		 * URL resource = getClass().getClassLoader().getResource("notepad-store.txt");
+		 */
+		/* File notesFile=new File(resource.getFile()); */
+		FileWriter fileWriter =new FileWriter(resource.getFile(),true);
 		
 		fileWriter.write(notesdata);
 		fileWriter.close();

@@ -28,7 +28,7 @@
       </li>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="/add-notes">Database</a>
+        <a class="nav-link" href="/add-notes">Add notes</a>
       </li>
     </ul>
   </div>
