@@ -6,6 +6,6 @@
 <jsp:include page="head.jsp"></jsp:include>
 <body>
 <jsp:include page="header.jsp" />
-<div>${"notes-content"}</div> 
+<div>${notescontent}</div> 
 </body>
 </html>

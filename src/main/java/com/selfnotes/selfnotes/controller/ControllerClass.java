@@ -20,8 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ControllerClass {
-	@Autowired
-	ResourceLoader resourceLoader;
+	private String fileLocation="../../../notepad-store.txt";
 	
 	@GetMapping("home")
 	public String getHome() {
@@ -64,42 +63,33 @@ public class ControllerClass {
 	@PostMapping("/save-notes")
 	public ModelAndView saveNotes(@RequestParam String notesdata) throws IOException {
 		
-		Resource resource = new ClassPathResource("notepad-store.txt") ;
-		File file=resource.getFile();
 				
-		FileWriter fileWriter =new FileWriter(file,true);
+		File yourFile = new File(fileLocation);
+		yourFile.createNewFile(); 
+		// if file already exists will do nothing 
+		FileWriter fileWriter =new FileWriter(fileLocation,true);
 		
-		fileWriter.write(notesdata);
-		fileWriter.close();
-		 
-		/*
-		 * FileReader fileReader=new FileReader(file);
-		 * 
-		 * Scanner sc = new Scanner(fileReader); sc.useDelimiter("\\Z");
-		 * 
-		 * ModelAndView model=new ModelAndView(); fileReader.close();
-		 * 
-		 * model.addObject("notescontent",sc.next());
-		 * 
-		 * model.setViewName("notes-content");
-		 */
-		
-		return readNotes();
+		 fileWriter.write(notesdata);
+		 fileWriter.flush(); 
+		 fileWriter.close();  
+		 		
+		return new ModelAndView("notes-content");
 	}
 	
 	@GetMapping("/read")
 	public ModelAndView readNotes() throws FileNotFoundException, IOException {
-		Resource resource = new ClassPathResource("notepad-store.txt") ;
-		File file=resource.getFile();
-		FileReader fileReader=new FileReader(file);
+		
+		FileReader fileReader=new FileReader(fileLocation);
 		
 		Scanner sc = new Scanner(fileReader);
         sc.useDelimiter("\\Z");
         
+        
 		ModelAndView model=new ModelAndView();
 		
 		model.addObject("notescontent",sc.next());
-		
+		sc.close();
+		fileReader.close();
 		model.setViewName("notes-content");
 		
 		return model;
