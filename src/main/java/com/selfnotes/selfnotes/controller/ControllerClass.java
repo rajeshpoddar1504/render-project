@@ -109,6 +109,7 @@ public class ControllerClass {
 		  return Stream.of(new ClassPathResource(dir).getFile().listFiles())
 	      .filter(file -> !file.isDirectory())
 	      .map(File::getName)
+	      .sorted((e1,e2)->e1.compareTo(e2))
 	      .collect(Collectors.toList());
 	}
 }
