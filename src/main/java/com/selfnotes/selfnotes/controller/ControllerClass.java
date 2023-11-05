@@ -6,8 +6,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.Scanner;
-
+import java.util.Set;
+import java.util.stream.Stream;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -27,8 +30,14 @@ public class ControllerClass {
 		return "home";
 	}
 	@GetMapping("java")
-	public String getJava() {
-		return "java";
+	public ModelAndView getJava() {
+		
+		List<String>  files=listFilesUsingJavaIO("./src/main/resources/static/images/java_img/collection_framework/");
+		ModelAndView model=new ModelAndView();
+		model.addObject("notes_file", files);
+		
+		model.setViewName("java");	
+		return model;
 	}
 	@GetMapping("git")
 	public String getGit() {
@@ -94,5 +103,20 @@ public class ControllerClass {
 		
 		return model;
 	}
-	
+	public List<String> listFilesUsingJavaIO(String dir) {
+		String currentPath;
+		try {
+			currentPath = new java.io.File("./").getCanonicalPath();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+		 
+	    return Stream.of(new File(dir).listFiles())
+	      .filter(file -> !file.isDirectory())
+	      .map(File::getName)
+	      .collect(Collectors.toList());
+	}
 }

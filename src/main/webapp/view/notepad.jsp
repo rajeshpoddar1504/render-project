@@ -6,10 +6,10 @@
 <jsp:include page="head.jsp"></jsp:include>
 <body>
 <jsp:include page="header.jsp" />
-	<div style=" height: 100%; width: 90%" >
-	<form action="save-notes" style=" height: 90%; width: 90%;" method="POST">
-		<div>Write you notes here</div>
-		<textarea rows="" cols="" style=" height: 90%; width: 90%" name="notesdata"></textarea>
+	<div style=" height: 100%;" class="body-main-cont content-center">
+	<form action="save-notes" style=" height: 90%; " method="POST">
+		<div>Write your notes here</div>
+		<textarea rows="" cols="" style=" height: 90%; width: 100%" name="notesdata"></textarea>
 		<input type="submit">
 	</form>
 	</div>

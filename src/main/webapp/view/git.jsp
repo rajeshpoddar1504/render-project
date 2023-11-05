@@ -6,6 +6,7 @@
 <jsp:include page="head.jsp"></jsp:include>
 <body>
 	<jsp:include page="header.jsp" />
+	<div  class="body-main-cont">
 
 	<a href="https://www.atlassian.com/git/glossary" target="_blank">Online
 		reference</a>
@@ -114,5 +115,6 @@
 		Topics to refer
 		
 	</section>
+	</div>
 </body>
 </html>
