@@ -30,15 +30,16 @@ public class ControllerClass {
 		return "home";
 	}
 	@GetMapping("java")
-	public ModelAndView getJava() {
+	public ModelAndView getJava() throws IOException {
+		List<String>  files=listFilesUsingJavaIO("/static/images/java_img/collection_framework");
 		
-		List<String>  files=listFilesUsingJavaIO("./src/main/resources/static/images/java_img/collection_framework/");
 		ModelAndView model=new ModelAndView();
 		model.addObject("notes_file", files);
 		
 		model.setViewName("java");	
 		return model;
 	}
+	
 	@GetMapping("git")
 	public String getGit() {
 		return "git";
@@ -103,18 +104,9 @@ public class ControllerClass {
 		
 		return model;
 	}
-	public List<String> listFilesUsingJavaIO(String dir) {
-		String currentPath;
-		try {
-			currentPath = new java.io.File("./").getCanonicalPath();
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		 
-		 
-	    return Stream.of(new File(dir).listFiles())
+	public List<String> listFilesUsingJavaIO(String dir) throws IOException {
+	
+		  return Stream.of(new ClassPathResource(dir).getFile().listFiles())
 	      .filter(file -> !file.isDirectory())
 	      .map(File::getName)
 	      .collect(Collectors.toList());
