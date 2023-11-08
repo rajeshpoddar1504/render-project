@@ -39,3 +39,10 @@ nav{
 	height: 600px;
 	object-fit:contain;
 }
+.page-topi-list{
+	list-style: none;
+	padding: 20px;
+}
+.page-topi-list >li {
+	padding: 7px;
+}

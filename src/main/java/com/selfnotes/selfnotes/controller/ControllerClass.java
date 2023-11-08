@@ -25,10 +25,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class ControllerClass {
 	private String fileLocation="../../../notepad-store.txt";
 	
-	@GetMapping("home")
+	@GetMapping(value = {"home","/"})
 	public String getHome() {
 		return "home";
-	}
+	} 
 	@GetMapping("java")
 	public ModelAndView getJava() throws IOException {
 		List<String>  files=listFilesUsingJavaIO("/static/images/java_img/collection_framework");
@@ -39,6 +39,31 @@ public class ControllerClass {
 		model.setViewName("java");	
 		return model;
 	}
+	
+	@GetMapping("collection-framework")
+	public ModelAndView getCollectionFramework() throws IOException {
+		
+		String collectionfmLocate="/static/images/java_img/collection_framework";
+		
+		List<String>  files=listFilesUsingJavaIO(collectionfmLocate);
+		
+		ModelAndView model=new ModelAndView();
+		model.addObject("notes_file", files);
+		
+		model.setViewName("image-load");	
+		return model;
+	}
+	@GetMapping("orm")
+	public ModelAndView getOrm() throws IOException {
+		String collectionfmLocate="/static/images/java_img/orm";
+		List<String>  files=listFilesUsingJavaIO(collectionfmLocate);
+		ModelAndView model=new ModelAndView();
+		model.addObject("notes_file", files);
+		model.setViewName("image-load");	
+		return model;
+	}
+	
+	
 	
 	@GetMapping("git")
 	public String getGit() {
@@ -105,10 +130,10 @@ public class ControllerClass {
 		return model;
 	}
 	public List<String> listFilesUsingJavaIO(String dir) throws IOException {
-	
+			String imageRetrieveLoc=dir.replace("/static", "");
 		  return Stream.of(new ClassPathResource(dir).getFile().listFiles())
 	      .filter(file -> !file.isDirectory())
-	      .map(File::getName)
+	      .map(file->imageRetrieveLoc+"/"+file.getName())
 	      .sorted((e1,e2)->e1.compareTo(e2))
 	      .collect(Collectors.toList());
 	}

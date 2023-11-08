@@ -6,14 +6,14 @@
 <jsp:include page="head.jsp"></jsp:include>
 <body>
 	<jsp:include page="header.jsp" />
-	<div class="body-main-cont content-center">
-		<ul class="page-topi-list">
-			<li><a href="/collection-framework">Collection framework</a></li>
-			<li><a href="/orm">ORM</a></li>
-			<li><a href="/multithreading">Multi Threading</a></li>
-			<li><a href="/opps">OOPs</a></li>
+	<div class="body-main-cont" style="height: 100vh; width: 100vw;">
+	<c:forEach var="note_file" items="${notes_file }" varStatus="loop" begin="1">
+	<div class="content-center">Page No: ${loop.index}</div>
+		<img alt="img" class="notes-image"
+				src="${note_file}" />
+	</c:forEach>
 			
-		</ul>
 	</div>
+
 </body>
 </html>
