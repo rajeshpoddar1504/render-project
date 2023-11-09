@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
@@ -56,6 +57,24 @@ public class ControllerClass {
 	@GetMapping("orm")
 	public ModelAndView getOrm() throws IOException {
 		String collectionfmLocate="/static/images/java_img/orm";
+		List<String>  files=listFilesUsingJavaIO(collectionfmLocate);
+		ModelAndView model=new ModelAndView();
+		model.addObject("notes_file", files);
+		model.setViewName("image-load");	
+		return model;
+	}
+	@GetMapping("multithreading")
+	public ModelAndView getMultithreading() throws IOException {
+		String collectionfmLocate="/static/images/java_img/multithreading";
+		List<String>  files=listFilesUsingJavaIO(collectionfmLocate);
+		ModelAndView model=new ModelAndView();
+		model.addObject("notes_file", files);
+		model.setViewName("image-load");	
+		return model;
+	}
+	@GetMapping("opps")
+	public ModelAndView getOOps() throws IOException {
+		String collectionfmLocate="/static/images/java_img/oops";
 		List<String>  files=listFilesUsingJavaIO(collectionfmLocate);
 		ModelAndView model=new ModelAndView();
 		model.addObject("notes_file", files);
@@ -131,10 +150,10 @@ public class ControllerClass {
 	}
 	public List<String> listFilesUsingJavaIO(String dir) throws IOException {
 			String imageRetrieveLoc=dir.replace("/static", "");
-		  return Stream.of(new ClassPathResource(dir).getFile().listFiles())
+			return Stream.of(new ClassPathResource(dir).getFile().listFiles())
 	      .filter(file -> !file.isDirectory())
 	      .map(file->imageRetrieveLoc+"/"+file.getName())
-	      .sorted((e1,e2)->e1.compareTo(e2))
-	      .collect(Collectors.toList());
+	      .sorted((e1,e2)->e1.compareTo(e2))	      
+	      .collect(Collectors.toList());	      
 	}
 }

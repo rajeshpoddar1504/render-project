@@ -7,8 +7,8 @@
 <body>
 	<jsp:include page="header.jsp" />
 	<div class="body-main-cont" style="height: 100vh; width: 100vw;">
-	<c:forEach var="note_file" items="${notes_file }" varStatus="loop" begin="1">
-	<div class="content-center">Page No: ${loop.index}</div>
+	<c:forEach var="note_file" items="${notes_file }" varStatus="loop" begin="0">
+	<div class="content-center">Page No: ${loop.index+1}</div>
 		<img alt="img" class="notes-image"
 				src="${note_file}" />
 	</c:forEach>
