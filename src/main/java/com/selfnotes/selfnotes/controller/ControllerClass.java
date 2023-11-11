@@ -54,6 +54,73 @@ public class ControllerClass {
 		model.setViewName("image-load");	
 		return model;
 	}
+	@GetMapping("file-operations")
+	public ModelAndView getFileOps() throws IOException {
+		
+		String collectionfmLocate="/static/images/java_img/fileio";
+		
+		List<String>  files=listFilesUsingJavaIO(collectionfmLocate);
+		
+		ModelAndView model=new ModelAndView();
+		model.addObject("notes_file", files);
+		
+		model.setViewName("image-load");	
+		return model;
+	}
+	@GetMapping("java-strings")
+	public ModelAndView getJavaStrings() throws IOException {
+		
+		String collectionfmLocate="/static/images/java_img/javastrings";
+		
+		List<String>  files=listFilesUsingJavaIO(collectionfmLocate);
+		
+		ModelAndView model=new ModelAndView();
+		model.addObject("notes_file", files);
+		
+		model.setViewName("image-load");	
+		return model;
+	}
+	@GetMapping("java8")
+	public ModelAndView getJava8() throws IOException {
+		
+		String collectionfmLocate="/static/images/java_img/java8";
+		
+		List<String>  files=listFilesUsingJavaIO(collectionfmLocate);
+		
+		ModelAndView model=new ModelAndView();
+		model.addObject("notes_file", files);
+		
+		model.setViewName("image-load");	
+		return model;
+	}
+	@GetMapping("jdbc")
+	public ModelAndView getJdbc() throws IOException {
+		
+		String collectionfmLocate="/static/images/java_img/jdbcimg";
+		
+		List<String>  files=listFilesUsingJavaIO(collectionfmLocate);
+		
+		ModelAndView model=new ModelAndView();
+		model.addObject("notes_file", files);
+		
+		model.setViewName("image-load");	
+		return model;
+	}
+	
+	@GetMapping("springboot")
+	public ModelAndView getSpringfw() throws IOException {
+		
+		String collectionfmLocate="/static/images/java_img/springfw";
+		
+		List<String>  files=listFilesUsingJavaIO(collectionfmLocate);
+		
+		ModelAndView model=new ModelAndView();
+		model.addObject("notes_file", files);
+		
+		model.setViewName("image-load");	
+		return model;
+	}
+	
 	@GetMapping("orm")
 	public ModelAndView getOrm() throws IOException {
 		String collectionfmLocate="/static/images/java_img/orm";
@@ -92,10 +159,11 @@ public class ControllerClass {
 	public String getMicroservices() {
 		return "microservices";
 	}
-	@GetMapping("springboot")
-	public String getSpringboot() {
-		return "springboot";
-	}
+
+	/*
+	 * @GetMapping("springboot") public String getSpringboot() { return
+	 * "springboot"; }
+	 */
 	@GetMapping("html")
 	public String getHtml() {
 		return "html";

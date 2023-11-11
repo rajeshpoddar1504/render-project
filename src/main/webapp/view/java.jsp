@@ -8,10 +8,19 @@
 	<jsp:include page="header.jsp" />
 	<div class="body-main-cont content-center">
 		<ul class="page-topi-list">
-			<li><a href="/collection-framework">Collection framework</a></li>
-			<li><a href="/orm">ORM</a></li>
-			<li><a href="/multithreading">Multi Threading</a></li>
-			<li><a href="/opps">OOPs</a></li>
+		<li><a href="/opps">OOPs</a></li>
+		<li><a href="/collection-framework">Collection framework</a></li>
+		<li><a href="/java8">JAVA 8</a></li>
+		<li><a href="/springboot">Spring Boot</a></li>
+		<li><a href="/multithreading">Multi Threading</a></li>
+		<li><a href="/java-strings">Java Strings</a></li>
+		<li><a href="/orm">ORM</a></li>
+		<li><a href="/jdbc">jdbc</a></li>
+		<li><a href="/file-operations">File Operations</a></li>
+			
+			
+			
+			
 			
 		</ul>
 	</div>
