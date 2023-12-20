@@ -17,7 +17,7 @@ footer{
 nav{
 	padding-left: 10px !important;
 	padding-right: 10px !important;
-	 background-color: #31b5f7;
+	 background-color: #007acc;
 	 	 
 }
 .nav-style{
@@ -28,6 +28,9 @@ nav{
 #navbarNav > ul> li {
 	color: black;
 } 
+.nav-link{
+	color: white;
+}
 .body-main-cont{
 	margin: 10px;
 }

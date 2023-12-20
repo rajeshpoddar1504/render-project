@@ -176,6 +176,10 @@ public class ControllerClass {
 	public String getDatabase() {
 		return "database";
 	}
+	@GetMapping("kafka")
+	public String getKafka() {
+		return "kafka";
+	}
 	
 	@GetMapping("add-notes")
 	public String getNotes() {
