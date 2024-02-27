@@ -7,7 +7,7 @@
 <body>
 	<jsp:include page="header.jsp" />
 
-	<div class="body-main">
+	<div class="body-main m-4">
 		<p
 			style='margin-top: 0cm; margin-right: 0cm; margin-bottom: 10.0pt; margin-left: 0cm; line-height: 115%; font-size: 15px; font-family: "Calibri", "sans-serif"; text-align: center;'>
 			<strong><u><span
