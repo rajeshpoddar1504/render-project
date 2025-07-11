@@ -36,10 +36,11 @@ FROM eclipse-temurin:21-jre
 WORKDIR /app
 
 # Copy the built application from the build stage
-COPY --from=build /app/target/*.jar app.jar
+COPY --from=build /app/target/*.war app.war
 
 # Expose the port your application runs on (e.g., 8080)
 EXPOSE 8080
 
 # Command to run the application
-CMD ["java", "-jar", "app.jar"]
+#CMD ["java", "-jar", "app.jar"]
+CMD ["catalina.sh", "run"]
