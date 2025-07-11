@@ -9,5 +9,4 @@ public class SelfNotesApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SelfNotesApplication.class, args);
 	}
-
 }

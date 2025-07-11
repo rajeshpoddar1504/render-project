@@ -11,8 +11,7 @@
 	<div class="content-center">Page No: ${loop.index+1}</div>
 		<img alt="img" class="notes-image"
 				src="${note_file}" />
-	</c:forEach>
-			
+	</c:forEach>	
 	</div>
 
 </body>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration>
+  
+<log4j:configuration debug="true">
+  <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+    <param name="Target" value="System.out"/>
+    <param name="Threshold" value="DEBUG"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="AIRLINE    : %5L %-20C{1}:%20M : %m%n"/>
+    </layout>
+  </appender>
+   
+  <appender name="MAIN" class="org.apache.log4j.DailyRollingFileAppender">
+    <param name="File" value="C:/common/logs/main.log"/>
+    <param name="Append" value="true"/>
+    <param name="DatePattern" value=".yyyy-MM-dd"/>
+    <param name="Threshold" value="DEBUG"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="AIRLINE    : %5L %-20C{1}:%20M : %m%n"/>
+    </layout>
+  </appender>
+   
+  <appender name="SOAP_LOG" class="org.apache.log4j.DailyRollingFileAppender">
+    <param name="File" value="C:/common/logs/SOAP.log"/>
+    <param name="Append" value="true"/>
+    <param name="DatePattern" value=".yyyy-MM-dd"/>
+    <param name="Threshold" value="DEBUG"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d%m%n"/>
+    </layout>
+  </appender>
+        
+ (removed a couple of similar appenders here)
+   
+  <category name="org.jacksonwest">
+    <priority value="DEBUG"/>
+  </category>
+   
+  <category name="SOAP">
+    <priority value="DEBUG"/>
+    <appender-ref ref="SOAP_LOG"/>
+  </category>
+   
+  <category name="THP_RC_EVENTS">
+    <priority value="DEBUG"/>
+    <appender-ref ref="THP_RC_EVENTS_LOGGER"/>
+  </category>
+   
+  <category name="THP_RC_ERRORS">
+    <priority value="DEBUG"/>
+    <appender-ref ref="THP_RC_ERRORS_LOGGER"/>
+  </category>
+   
+  <root>    
+    <level value="DEBUG"/>
+    <appender-ref ref="CONSOLE"/>
+    <appender-ref ref="MAIN"/>
+  </root>
+</log4j:configuration>
