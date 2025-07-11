@@ -102,13 +102,14 @@ public class ControllerClass {
 		
 	   String handlerPath= request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE).toString();
 		
-	   System.out.println(handlerPath);
+	  // System.out.println(handlerPath);
 		ClassPathResource resource = new ClassPathResource("static"+handlerPath.replace("updated", "uploads"));
 		ModelAndView model = new ModelAndView();
 				
 		if(!resource.getFile().isFile()) {
-			List<String> files =Arrays.stream(resource.getFile().list()).map(e->e.endsWith(".txt")?(handlerPath+"/"+e).replace("updated", "uploads"):handlerPath+"/"+e).toList() ;
-			System.out.println(files);
+			List<String> files =Arrays.stream(resource.getFile().list()).map(e->e.endsWith(".txt")?(handlerPath+"/"+e).replace("updated", "uploads"):handlerPath+"/"+e)
+					.collect(Collectors.toList());
+			//System.out.println(files);
 			model.addObject("notes_file", files);
 		}
 		
