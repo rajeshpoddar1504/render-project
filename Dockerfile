@@ -36,7 +36,7 @@ FROM eclipse-temurin:21-jre
 WORKDIR /app
 
 # Copy the built application from the build stage
-COPY --from=build /app/target/*.war app.war
+COPY --from=build /app/target/*.war ROOT.war
 
 # Expose the port your application runs on (e.g., 8080)
 EXPOSE 8080
