@@ -1,0 +1,174 @@
+AWS EC2 (Elastic Compute Cloud) is a critical and widely used AWS service, so its understanding is essential for many AWS-related roles. Here's a comprehensive list of **AWS EC2 interview questions**, organized into categories for easier preparation:
+
+---
+
+### **Basic Questions**
+1. **What is AWS EC2, and what are its key features?**
+2. **What are the main use cases of AWS EC2?**
+3. **What is an EC2 instance?**
+4. **What is an AMI (Amazon Machine Image), and why is it used?**
+5. **What are the different EC2 pricing models, and how do you decide which one to use?**
+   * On-Demand
+   * Reserved Instances
+   * Savings Plans
+   * Spot Instances
+   * Dedicated Hosts
+6. **What is the default storage associated with an EC2 instance?**
+7. **What is an Elastic IP, and when should it be used?**
+8. **What are the limits for launching EC2 instances, and how can you increase them?**
+9. **What is the difference between stopping, hibernating, and terminating an EC2 instance?**
+10. **Explain the EC2 instance lifecycle and the different states an instance can be in.**
+
+---
+
+### **Types and Sizing**
+1. **What factors should you consider when choosing an EC2 instance type?**
+2. **What are the various EC2 instance families, and how do they differ?**
+   * General Purpose (e.g., t2, t3, m5)
+   * Compute Optimized (e.g., c5)
+   * Memory Optimized (e.g., r5, x1)
+   * Storage Optimized (e.g., i3, d2)
+   * Accelerated Computing (e.g., p3, g4)
+3. **What is an EC2 burstable instance (T-series), and how is it different from other types?**
+4. **How is Instance Storage different from EBS (Elastic Block Storage)?**
+5. **How would you select an instance type for a high-performance database?**
+6. **What is the difference between a dedicated instance and a dedicated host?**
+7. **What happens if you exceed the baseline CPU utilization for a burstable EC2 instance?**
+8. **What are Spot Instances, and what are their pros and cons?**
+
+---
+
+### **Networking**
+1. **What is the difference between public and private IP addresses in EC2?**
+2. **How does an EC2 instance communicate with the internet (via Internet Gateway or NAT)?**
+3. **What is an Elastic Network Interface (ENI), and how is it used with EC2?**
+4. **How would you assign multiple IP addresses to an EC2 instance?**
+5. **What is AWS placement group, and what are the types (Cluster, Spread, Partition)?**
+6. **Can EC2 instances in different VPCs communicate? If so, how?**
+7. **What is the purpose of Security Groups in EC2?**
+8. **How does a Network Access Control List (NACL) differ from a Security Group?**
+9. **What is the purpose of Elastic Load Balancers (ELB) in conjunction with EC2?**
+10. **What is an Egress-Only Internet Gateway, and when would you use it?**
+
+---
+
+### **Storage**
+1. **What are the different types of Elastic Block Store (EBS) volumes, and how are they used?**
+   * General Purpose SSD (gp2, gp3)
+   * Provisioned IOPS SSD (io1, io2)
+   * Throughput Optimized HDD (st1)
+   * Cold HDD (sc1)
+2. **What is AMI, and how do you create and share a custom AMI?**
+3. **How does EC2 Instance Store differ from EBS?**
+4. **What happens to the EBS volumes when an EC2 instance is terminated?**
+5. **How do you attach and detach EBS volumes to running EC2 instances?**
+6. **What are snapshots in EBS, and how can they be used for backup or migration?**
+7. **What is the maximum size limit of an EBS volume?**
+8. **Explain how you would handle data redundancy in EC2/EBS.**
+9. **What is Elastic File System (EFS), and how is it different from EBS?**
+10. **When would you use Amazon S3 as storage for an EC2 instance instead of EBS?**
+
+---
+
+### **Scaling**
+1. **What is auto-scaling in AWS EC2?**
+2. **What are the components of an Auto Scaling Group (ASG)?**
+3. **What is the difference between vertical scaling and horizontal scaling in EC2?**
+4. **How does Amazon EC2 Auto Scaling work with CloudWatch alarms to scale instances?**
+5. **What are cool-down periods in auto-scaling, and why are they needed?**
+6. **What are launch templates and launch configurations, and how are they used?**
+7. **Explain how you would configure a load balancer with auto-scaling groups.**
+8. **What are the differences between a dynamic scaling policy and a scheduled scaling policy?**
+9. **How do you ensure that instances in an Auto Scaling Group are terminated evenly across Availability Zones?**
+10. **What is predictive scaling in EC2, and when would you use it?**
+
+---
+
+### **Security**
+1. **What is the difference between Security Groups and NACLs?**
+2. **How would you restrict SSH access to a specific IP address for an EC2 instance?**
+3. **What is the role of Key Pairs in EC2, and how are they generated?**
+4. **How can you encrypt data on EBS volumes?**
+5. **What are IAM roles, and how do EC2 instances use them?**
+6. **How can you use Systems Manager with EC2 to securely manage instances?**
+7. **What is the best way to store and retrieve sensitive data on an EC2 instance?**
+8. **How would you protect an EC2 instance exposed to the public internet?**
+9. **What is EC2 Instance Metadata, and what kind of information can you get from it?**
+10. **What are the security implications of disabling source/destination checks on an EC2 instance?**
+
+---
+
+### **Cost Optimization**
+1. **How does EC2 pricing work for On-Demand, Reserved, and Spot Instances?**
+2. **What are Savings Plans, and how do they differ from Reserved Instances?**
+3. **How would you monitor and optimize the cost of EC2 instances?**
+4. **What are "zombie instances," and how can you identify and handle them?**
+5. **How does spot instance pricing work, and how do you bid for unused capacity?**
+6. **How can you use Spot Fleet to minimize costs with EC2?**
+7. **Explain the use of Reserved Instances Marketplace.**
+8. **How do you calculate the total cost of an EC2 instance, including storage, bandwidth, and compute?**
+9. **What tools or services in AWS can help identify and reduce EC2 costs?**
+10. **Would you recommend savings in compute costs using Spot Instances for production workloads? Why or why not?**
+
+---
+
+### **Monitoring and Troubleshooting**
+1. **How do you monitor the performance of an EC2 instance?**
+2. **What is Amazon CloudWatch, and how can it be used with EC2?**
+3. **How do you troubleshoot high CPU utilization in an EC2 instance?**
+4. **What would you do if an EC2 instance becomes inaccessible via SSH?**
+5. **How would you recover data from a failed EC2 instance?**
+6. **What are CloudWatch Logs, and how can you enable them for an EC2 instance?**
+7. **How do you troubleshoot an EC2 instance that is not launching successfully?**
+8. **What steps would you take if an EC2 instance is experiencing intermittent network latency?**
+9. **How do you manage logs from multiple EC2 instances effectively?**
+10. **What is Instance Recovery, and how would you configure it?**
+
+---
+
+### **Real-World Scenarios**
+1. **How would you set up an EC2 instance for a high-traffic website?**
+2. **How would you migrate an on-premises application to AWS using EC2?**
+3. **Describe a scenario where you would use Spot Instances to save costs.**
+4. **How would you use EC2 with Elastic Load Balancer and Auto Scaling Groups for a fault-tolerant system?**
+5. **Explain how you would securely access an EC2 instance from your local machine.**
+6. **How would you achieve a disaster recovery setup for EC2 instances across regions?**
+7. **You need to run a batch processing task that requires a large amount of compute power but for a short duration. Which EC2 pricing model would you use and why?**
+8. **How would you set up EC2 instances to run a containerized application?**
+9. **Describe how you’d scale a data pipeline running on EC2 to handle increased data volumes.**
+10. **You need to upgrade an EC2 instance’s capacity while minimizing downtime. How would you do this?**
+
+---
+
+### **Behavioral Questions**
+1. **Describe a challenging situation in managing or troubleshooting EC2 instances. How did you resolve it?**
+2. **Have you implemented cost optimization for EC2 in a previous project? What was your approach?**
+3. **Tell me about a time you had to secure an EC2 instance. What steps did you take?**
+4. **What measures have you taken to make EC2 deployments highly available and scalable?**
+5. **Describe a time when you improved the performance of an application on an EC2 instance.**
+
+---
+
+### **Hands-On Questions**
+1. **Launch an EC2 instance using the AWS CLI.**
+2. **Modify the security group of an existing EC2 instance to allow HTTP traffic.**
+3. **Write a script to create and attach an additional EBS volume to an EC2 instance.**
+4. **Demonstrate setting up a web server on an EC2 instance.**
+5. **Create a custom AMI from a running EC2 instance.**
+6. **Use the AWS CLI to resize an EBS volume for an EC2 instance.**
+7. **Create a placement group using the console, and explain its purpose.**
+8. **Write a shell command to retrieve instance metadata from within an EC2 instance.**
+9. **Set up CloudWatch alarms to monitor CPU utilization of an EC2 instance.**
+10. **Simulate launching a Spot Instance using the AWS Management Console or CLI.**
+
+---
+
+### **Preparation Tips**
+- **Understand EC2 basics and features**: Know how different instance types, storage, AMIs, and networks work.
+- Familiarize yourself with **pricing models and cost optimization techniques.**
+- **Hands-on practice** is crucial: Work with EC2 using the AWS Management Console, CLI, and SDK.
+- **Learn Security Best Practices**: IAM roles, key pairs, security groups, NACLs, and encryption.
+- Study architecture patterns involving **EC2, ELB, Auto Scaling, and CloudWatch.**
+- Review troubleshooting techniques for **networking, storage, and performance.**
+
+Let me know if you need deeper explanations on any of these topics! Good luck with your interview preparation! 🚀

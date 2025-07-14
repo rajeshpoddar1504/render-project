@@ -1,0 +1,157 @@
+Here is a comprehensive list of **AWS SQS (Simple Queue Service)** and **AWS SNS (Simple Notification Service)** interview questions, categorized to highlight their features, capabilities, and differences. Both services are essential for building reliable, scalable, and event-driven applications in AWS.
+
+---
+
+### **AWS SQS Interview Questions**
+
+#### **Basic Questions**
+1. **What is Amazon SQS, and how does it work?**
+2. **What are the primary use cases for SQS?**
+3. **What types of queues are available in SQS?**
+   - Standard Queue
+   - FIFO Queue
+4. **What is the difference between Standard and FIFO queues in SQS?**
+5. **What is the maximum message size supported by SQS?**
+6. **What is the maximum retention period for messages in SQS?**
+7. **How does SQS ensure message delivery?**
+   - At-least-once delivery
+   - Message deduplication (for FIFO queues)
+8. **What API actions are supported by SQS (e.g., SendMessage, ReceiveMessage, DeleteMessage)?**
+9. **Explain the concept of visibility timeout in SQS.**
+10. **What is Dead Letter Queue (DLQ) in SQS, and why is it used?**
+
+---
+
+#### **Advanced Questions**
+1. **How does SQS handle duplicate messages?**
+2. **Explain long polling and how it differs from short polling in SQS.**
+3. **What are message attributes in SQS, and how can they be used?**
+4. **How can you use SQS for decoupling microservices?**
+5. **What is the purpose of the ReceiveMessageWaitTimeSeconds attribute in SQS?**
+6. **What are the security mechanisms available for SQS?**
+   - IAM policies
+   - Access permissions via SQS queue policy
+7. **How can SQS integrate with other AWS services like Lambda, EC2, Step Functions, or SNS?**
+8. **What happens if a message is not processed within the visibility timeout?**
+9. **How would you implement a priority system using SQS queues?**
+10. **What are some best practices for optimizing SQS performance?**
+
+---
+
+#### **Real-World Scenarios**
+1. **How would you design a workflow that uses SQS for task queuing?**
+2. **Explain how you would handle and debug processing failures in SQS tasks.**
+3. **How would you configure an application to process messages from an SQS queue using AWS Lambda?**
+4. **Describe how SQS can be used for rate-limiting in an application.**
+5. **Explain a scenario where you would use FIFO queues over Standard queues.**
+6. **Describe a use case for integrating SQS with Step Functions for orchestrating workflows.**
+7. **How would you implement a retry mechanism for failed messages in SQS?**
+8. **What metrics or tools would you use to monitor and troubleshoot SQS queues?**
+9. **How would you migrate on-premises queuing systems (like RabbitMQ or Kafka) to SQS?**
+10. **You need to send millions of messages per second to an SQS queue. How would you scale it?**
+
+---
+
+### **AWS SNS Interview Questions**
+
+#### **Basic Questions**
+1. **What is Amazon SNS, and how does it work?**
+2. **What are the primary use cases for SNS?**
+3. **What are topics in SNS, and what is their purpose?**
+4. **Explain the concept of subscriptions in SNS.**
+5. **What are the different protocols supported by SNS for message delivery?**
+   - HTTP/HTTPS
+   - Email
+   - Phone Number (SMS)
+   - Lambda
+   - SQS
+6. **How does SNS guarantee message delivery to subscribers?**
+7. **What is the maximum message size in SNS?**
+8. **How does SNS differ from SQS?**
+9. **What is the difference between a topic and a subscription in AWS SNS?**
+10. **What happens if SNS fails to deliver a message to a subscriber?**
+
+---
+
+#### **Advanced Questions**
+1. **How do you secure SNS using IAM policies and topic policies?**
+2. **What are some ways to ensure fault tolerance and scalability in SNS?**
+3. **What is message filtering in SNS, and how does it work?**
+4. **How can you achieve cross-account subscription with SNS?**
+5. **Explain the fan-out architecture with SNS and SQS.**
+6. **What are the reliability guarantees for SNS message delivery?**
+7. **How does SNS integrate with AWS Lambda for event-driven architectures?**
+8. **What is the benefit of using SNS with HTTPS endpoints?**
+9. **How would you configure SNS for sending notifications based on events in CloudWatch?**
+10. **What is the purpose of Amazon EventBridge, and how does it compare to SNS for event-driven architectures?**
+
+---
+
+#### **Real-World Scenarios**
+1. **Describe how SNS can be used for broadcasting system-wide notifications.**
+2. **How would you set up an SNS topic with multiple subscribers, including email and SMS?**
+3. **How would you use SNS to enable application communication in a multi-region setup?**
+4. **Explain how you would log SNS notifications in real-time using Lambda and DynamoDB.**
+5. **How would you use SNS to notify users in a service downtime scenario?**
+6. **What is fan-out messaging, and how can it be implemented using SNS and SQS?**
+7. **You are tasked with sending high-volume transactional alerts to users. Would you choose SNS or SQS? Why?**
+8. **How would you configure message filtering for SNS topics with multiple types of subscribers (filtering by message attributes)?**
+9. **Describe a scenario where SNS’s cross-region delivery is beneficial.**
+10. **How would you design a pub/sub model for a real-time notification system using SNS?**
+
+---
+
+### **AWS SQS vs AWS SNS**
+1. **What are the primary differences between SQS and SNS?**
+2. **In what situations would you use SNS over SQS or vice versa?**
+3. **How does fan-out messaging work with SNS as the producer and SQS as the consumer?**
+4. **What are the use cases where SNS and SQS complement each other?**
+5. **If you need to implement a queueing system for delayed processing, would you use SQS or SNS? Why?**
+6. **What are the reliability and scalability trade-offs between SNS and SQS?**
+7. **What is the difference between the message delivery mechanisms of SNS and SQS?**
+8. **How does SNS differ from EventBridge for publishing events?**
+9. **Explain how you would integrate SNS with SQS to create a decoupled system.**
+10. **What are the limitations of SNS and SQS when building near real-time systems?**
+
+---
+
+### **Monitoring and Troubleshooting**
+#### **SQS Monitoring & Troubleshooting**
+1. **How do you monitor the number of messages in an SQS queue?**
+2. **What CloudWatch metrics are available for SQS?**
+3. **How do you troubleshoot slow processing of SQS messages?**
+4. **Explain how you would find and handle "poison messages" in an SQS queue.**
+5. **What tools should you use to analyze the performance and usage of SQS queues?**
+
+#### **SNS Monitoring & Troubleshooting**
+1. **How do you monitor the delivery success rate of SNS messages?**
+2. **What are the key CloudWatch metrics available for SNS?**
+3. **How do you troubleshoot failed SNS deliveries?**
+4. **What happens when an HTTP endpoint subscribed to an SNS topic fails to acknowledge a message delivery?**
+5. **How would you debug high latencies in SNS notifications?**
+
+---
+
+### **Hands-On/Practical Questions**
+1. **Create and configure an SQS queue using AWS Management Console or AWS CLI.**
+2. **Write a Lambda function to process messages from an SQS queue.**
+3. **Create an SNS topic and subscribe an email endpoint to it.**
+4. **Write an IAM policy to allow an SQS queue to receive messages from an SNS topic.**
+5. **Simulate and implement fan-out architecture using SNS topics and multiple SQS queues.**
+6. **Create a solution where an SNS topic triggers a Lambda function that processes and stores data in DynamoDB.**
+7. **Write an AWS CLI command/script to send a message to an SQS queue and retrieve it.**
+8. **Configure message filtering on an SNS topic to send personalized notifications based on user attributes.**
+9. **Set up an SQS Dead Letter Queue and demonstrate its use in catching unprocessed messages.**
+10. **Create a CloudWatch alarm to monitor the number of messages in an SQS queue and send notifications to an SNS topic.**
+
+---
+
+### **Preparation Tips**
+1. **Understand the architecture**: Know the components, use cases, and operational details of both SQS and SNS.
+2. **Hands-on practice**: Use AWS Console, CLI, and SDK (e.g., Boto3) to create queues, topics, and set up integrations.
+3. **Event-driven design**: Learn real-world scenarios where SQS and SNS work together and complement each other.
+4. **Monitoring and troubleshooting**: Familiarize yourself with CloudWatch metrics and the tools used for debugging message failures or delays.
+5. **Build real-world use cases**: Experiment with fan-out messaging, pub/sub models, message filtering, and DLQ scenarios.
+6. Review AWS **documentation and best practices** for optimizing performance, security, and scalability.
+
+With this list and your preparation, you’ll be well-equipped to handle any SQS or SNS-related questions in your interview. Let me know if you'd like deeper explanations, examples, or hands-on guidance for specific scenarios. 🚀 Good luck! 🌟

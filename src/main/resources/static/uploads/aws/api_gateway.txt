@@ -1,0 +1,147 @@
+Here is a comprehensive list of **AWS API Gateway** interview questions, organized by category. This will help you master all aspects of the service, from basic functionality to advanced integrations and real-world use cases. API Gateway is a key service for managing and orchestrating APIs within AWS, so it's an important topic for interviews.
+
+---
+
+### **Basic Questions**
+1. **What is Amazon API Gateway, and what is it used for?**
+2. **What are the key features of API Gateway?**
+3. **What types of APIs can you create with API Gateway?**
+   - REST API  
+   - HTTP API  
+   - WebSocket API  
+4. **What is the difference between REST APIs and WebSocket APIs in API Gateway?**
+5. **What is the purpose of stages in API Gateway?**
+6. **What are the key components of an API in API Gateway?**
+7. **What is an API Gateway endpoint?**
+8. **What are methods and resources in API Gateway?**
+9. **How does API Gateway support security for APIs?**
+10. **What is the maximum payload size supported by API Gateway?**
+
+---
+
+### **Deployment and Configuration**
+1. **How do you deploy an API using API Gateway?**
+2. **What is a deployment in API Gateway, and how does it differ from a stage?**
+3. **What are API Gateway stages, and how are they used?**
+4. **How would you make changes to an API without impacting production traffic?**
+5. **What is the purpose of exporting API Gateway definitions as OpenAPI or Swagger files?**
+6. **How would you enable API Gateway caching to improve performance?**
+7. **What are usage plans, and how are they used in API Gateway?**
+8. **What is the difference between an edge-optimized endpoint and a regional endpoint in API Gateway?**
+9. **How can you deploy an API within a VPC using API Gateway?**
+10. **How do you enable custom domains for APIs in API Gateway?**
+
+---
+
+### **Security and Authorization**
+1. **How can you secure your APIs in API Gateway?**
+   - IAM policies
+   - Lambda Authorizers
+   - API Keys
+   - Resource Policies
+2. **What is the difference between a Lambda Authorizer and a Cognito User Pool Authorizer in API Gateway?**
+3. **How does API Gateway integrate with AWS IAM for API access management?**
+4. **What are resource policies in API Gateway, and how are they different from IAM policies?**
+5. **What is Cross-Origin Resource Sharing (CORS), and how do you configure it in API Gateway?**
+6. **How would you use API Keys with API Gateway to track and control API usage?**
+7. **What is mutual TLS (mTLS), and how does it enhance API Gateway security?**
+8. **How does API Gateway handle throttling and rate limiting?**
+9. **What are the different types of caching mechanisms in API Gateway?**
+10. **How would you configure IP whitelisting or blacklisting for an API?**
+
+---
+
+### **Integration**
+1. **What are the backend integrations available in API Gateway?**
+   - AWS Lambda functions
+   - HTTP endpoints
+   - Other AWS services
+2. **How does API Gateway integrate with Lambda?**
+3. **What is a Mock Integration in API Gateway, and how is it used?**
+4. **How can API Gateway forward requests to an HTTP endpoint?**
+5. **What is VPC Link in API Gateway, and how does it work?**
+6. **What is the purpose of mapping templates in API Gateway? Give an example.**
+7. **How do you pass data from API Gateway to a Lambda function?**
+8. **What are the differences between Proxy Integration and Custom Integration with Lambda?**
+9. **How would you use Step Functions with API Gateway to orchestrate workflows?**
+10. **Can API Gateway work with WebSocket APIs for real-time communication? Provide a use case.**
+
+---
+
+### **Monitoring and Troubleshooting**
+1. **How do you monitor API Gateway performance?**
+2. **What metrics are available for monitoring API Gateway in CloudWatch?**
+   - Latency
+   - IntegrationFailure
+   - 4XX/5XX errors
+3. **What tools would you use to debug API requests and responses in API Gateway?**
+4. **What is the purpose of Access Logs and Execution Logs in API Gateway?**
+5. **How can you enable detailed logging for API Gateway?**
+6. **How would you troubleshoot an API Gateway endpoint that is returning 5XX errors?**
+7. **Explain the most common causes of API Gateway 403 Forbidden errors and how to fix them.**
+8. **What is Stage Variables in API Gateway, and how can they be helpful for troubleshooting?**
+9. **How can you use CloudTrail to audit API Gateway activity?**
+10. **What steps would you follow to troubleshoot slow API response times in API Gateway?**
+
+---
+
+### **Advanced Features**
+1. **What is an API Gateway WebSocket API, and how does it differ from REST and HTTP APIs?**
+2. **How does API Gateway handle request transformations using mapping templates?**
+3. **How would you enable request validation in API Gateway?**
+4. **Can you explain the process of generating SDKs for your APIs using API Gateway?**
+5. **What is request and response throttling in API Gateway?**
+6. **How does custom domain name mapping work in API Gateway?**
+7. **What is the benefit of using mutual TLS (mTLS) with API Gateway?**
+8. **How do you enable tracing in API Gateway using AWS X-Ray?**
+9. **What are Gateway Responses in API Gateway, and how can you customize them?**
+10. **How would you deploy infrastructure as code for API Gateway using AWS CloudFormation or Terraform?**
+
+---
+
+### **Real-World Scenarios**
+1. **How would you design a serverless REST API using API Gateway, Lambda, and DynamoDB?**
+2. **Explain how you would implement versioning for APIs in API Gateway.**
+3. **How would you use API Gateway caching to reduce latency and improve performance?**
+4. **You need to secure an API that is accessed by mobile app users. How would you design this using API Gateway?**
+5. **How would you use API Gateway with an analytics tool to monitor API usage trends?**
+6. **Explain a use case where WebSocket APIs would be more appropriate than REST APIs.**
+7. **How would you enable role-based access control to APIs managed in API Gateway?**
+8. **Describe how you would implement a data validation mechanism for incoming API requests in API Gateway.**
+9. **You need to expose multiple microservices behind a single API. How would you achieve this with API Gateway?**
+10. **How would you integrate API Gateway with Lambda to create a multi-step serverless workflow?**
+
+---
+
+### **API Gateway vs Other Services**
+1. **What is the difference between API Gateway REST API and HTTP API? When would you use each?**
+2. **Compare API Gateway and AWS AppSync. When would you use one over the other?**
+3. **What are the primary differences between API Gateway and ALB (Application Load Balancer) for API hosting?**
+4. **How does API Gateway differ from Amazon EventBridge for event-driven architectures?**
+5. **What are the limitations of API Gateway, and how do you work around them?**
+
+---
+
+### **Hands-On/Practical Questions**
+1. **Create a simple REST API using API Gateway to trigger a Lambda function.**
+2. **Configure a custom domain and route traffic to an API Gateway endpoint.**
+3. **Set up CORS for an API Gateway endpoint.**
+4. **Create a usage plan with throttling for your API Gateway endpoints using the AWS Console.**
+5. **Set up request and response validation for an API Gateway REST API.**
+6. **Write a mapping template to transform incoming JSON data before passing it to a Lambda function.**
+7. **Enable API Gateway caching for an endpoint and measure its impact.**
+8. **Create a Lambda Authorizer for your API Gateway and implement token-based authentication.**
+9. **Set up access logging for API Gateway requests in CloudWatch.**
+10. **Use API Gateway to trigger a workflow in AWS Step Functions.**
+
+---
+
+### **Preparation Tips**
+1. **Understand the Basics**: Be clear on the core components of API Gateway, such as methods, resources, stages, security, and deployment strategies.
+2. **Learn Real-World Use Cases**: Focus on designing serverless architectures with API Gateway, Lambda, DynamoDB, and other AWS services.
+3. **Practice Hands-On**: Use the AWS Console, CLI, or Infrastructure-as-Code tools like CloudFormation/Terraform to deploy and configure APIs.
+4. **Security and Performance**: Familiarize yourself with securing APIs using IAM, Lambda Authorizers, API keys, and best practices for caching, scaling, and throttling.
+5. **Integration Scenarios**: Learn how API Gateway integrates with AWS services such as Step Functions, SQS, SNS, and Kinesis.
+6. **Troubleshooting Skills**: Brush up on tools like CloudWatch, X-Ray, and Access Logs for debugging APIs.
+
+Let me know if you need example answers, code snippets, or further clarification on any of these questions. Good luck with your API Gateway interview preparation! 🚀
