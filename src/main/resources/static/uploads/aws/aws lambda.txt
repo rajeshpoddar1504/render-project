@@ -1207,3 +1207,51 @@ By combining these practices with periodic code reviews, I ensure the Lambda fun
    - Read blogs and tutorials from third-party sources and organizations specializing in serverless computing (e.g., A Cloud Guru, Medium, and Serverless Framework blogs).
 
 By combining knowledge gained from AWS resources, hands-on learning, and engaging with the community, I actively stay updated with the latest developments in AWS Lambda and use them to improve serverless applications effectively.
+---------------------------------------------------------
+creating REST API using aws lambda
+===================================
+1) create a new project in IntelliJ with 
+
+java version as 17
+catalog as Maven Central
+and archetype as com.amazonaws.serverless.archetypes:aws-serverless-springboot3-archetype
+
+2) this will generate the application code with template.yml pom.xml and other required java classes
+the class which implements the RequestStreamHandler will act as entry point for aws lambda
+
+public class StreamLambdaHandler implements RequestStreamHandler {
+
+3) Create a lambda function and upload the zip obtained from building code
+
+4) edit in runtime settings 
+update package, hander class and method information
+
+save and test the function
+
+To trigger the lambda as http request create REST API gateway with below details
+
+new api
+give api name
+
+click on create api
+
+create resource
+ resource path as /
+ resource name as {proxy+}
+
+as defined in the template
+
+create method,
+method type any
+choose lambda function arn
+create
+
+deploy api
+
+select state as new stage
+stge name as dev
+
+on deploying URL we get invoke URL similar to 
+https://xktkokirog.execute-api.ap-south-1.amazonaws.com/dev
+
+this url can be use to trigget the rest api
