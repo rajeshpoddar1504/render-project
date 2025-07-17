@@ -1,0 +1,65 @@
+G1GC (Garbage First Garbage Collector) is an advanced garbage collection algorithm introduced in Java 7 Update 4 and further enhanced in later releases of Java.
+
+G1GC is designed to divide the heap into small regions and perform garbage collection in a way that reduces pauses time (stop the world STW) while maintaining good overall throughput.
+
+Heap Layout and Regions:
+============================
+nstead of dividing the heap into fixed Young, Old, and Permanent generation spaces (like in other collectors), G1GC divides the heap into multiple equal-sized dynamic regions.
+
+The heap space is divided into a large number of regions (e.g., 2,048) of a constant size, depending on the heap size. Each region can hold either Eden, Survivor, Old, or Humongous objects
+
+Eden Regions: For recently allocated (new) objects.
+Survivor Regions: Hold objects that survived minor garbage collections but are not yet promoted to the old generation.
+Old Regions: For long-lived objects that have been promoted after surviving enough garbage collections.
+Humongous Regions: These are reserved for very large objects (whose size is greater than 50% of the region size).
+
+Each region can hold either Eden, Survivor, Old, or Humongous objects.
+
+Objects flow between generations:
+Young → Survivor → Old: Objects move from Eden to Survivor regions after surviving garbage collection, and eventually to Old regions when they mature
+
+Young Generation:
+Eden and Survivor regions.
+G1 performs minor collections here, where young generation objects are cleared in a stop-the-world (STW) phase but are efficient because the scope is small.
+Old Generation:
+Old regions.
+G1 maintains primary focus on collecting objects from these regions without long pauses, using concurrent and incremental mechanisms.
+
+Phases:
+=======
+Initial Mark Phase:
+A short stop-the-world (STW) pause marks all the objects that are directly reachable from root references (e.g., thread stacks, static fields, etc.)
+
+Concurrent Marking Phase:
+This phase runs concurrently with application threads. Dead objects in the heap are implicitly left unmarked.
+
+At the end of the marking phase, G1 calculates a liveness value for each region (i.e., how much of the region contains live data).
+
+Final Remark Phase:
+Another STW pause is initiated, but it is usually shorter than the initial mark pause.
+The purpose of this phase is to perform any leftover marking work and handle special edge cases (e.g., objects updated during concurrent marking).
+
+Cleanup Phase:
+Identifies entirely empty regions, which can be reused immediately for new allocations.
+
+Prepares to evacuate/compact partially-filled regions during the next collection cycle.
+
+Evacuation and Region Collection
+==================================
+G1GC focuses on collecting regions with the most garbage first (hence the name Garbage First), choosing the best candidate regions for evacuation in each cycle.
+Evacuation involves copying live objects in one region to another free region, compacting the heap as a side effect and making the evacuated region completely empty.
+Evacuation also works in parallel, with multiple threads acting simultaneously to speed up garbage collection.
+
+Pause Time Predictability
+==========================
+A major design goal of G1GC is to provide predictable pause times for garbage collection, a challenge in applications requiring low-latency responses.
+G1 allows you to configure a target pause time goal (e.g., -XX:MaxGCPauseMillis=200 for a 200ms maximum GC pause time).
+
+
+Key JVM Flags for Tuning G1GC
+----------------------------------
+-XX:+UseG1GC: Enables G1GC.
+-XX:MaxGCPauseMillis=<n>: Sets the target maximum pause time (default: 200ms).
+-XX:InitiatingHeapOccupancyPercent=<n>: Percentage of heap occupancy at which a concurrent GC cycle starts.
+-XX:G1HeapRegionSize=<n>: Sets the region size (default is dynamically calculated based on heap size).
+-XX:+PrintGCDetails: Prints detailed logs to analyze garbage collection behavior.
