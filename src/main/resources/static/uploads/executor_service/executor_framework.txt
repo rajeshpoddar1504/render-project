@@ -1,0 +1,395 @@
+SOUCE:
+----------------------
+What is need of Threads in java
+----------------
+Thread allow independent java code to run parallel.
+
+Executors Framework in Java
+----------------------------
+
+The executor framework was introduced in java 5 as part of the java.util.concurrent package to simplify the development of concurrent applicatinos by abstracting away many of the complexities involved in creating and managing threads.
+
+Exexutor uses the ThreadPool and ThreadForkJoin pool
+------------------------------
+
+
+Earlier issue:
+Manual thread management
+Resource management
+scalability
+Thread reuse
+Error Handling
+
+Interfaces in Executor Framework:
+--------------------------------
+Executor
+ExecutorService
+ScheduledExecutorService
+
+Different ways to create Executor Service
+--------------------------------------
+Executors.newSingleThreadExecutor();
+Executors.newFixedThreadPool(10);
+Executors.newScheduledThreadPool(10);
+
+
+Executors.newSingleThreadExecutor();
+creates single thread and used for all the task
+
+ex: 
+try(ExecutorService exe=Executors.newSingleThreadExecutor()){
+            exe.submit(new Thread2());
+            exe.execute(new Thread1());
+            System.out.println("main thread");
+
+        }
+
+
+Executors.newFixedThreadPool(4);
+create a pool of 4 threads that can be used to perform task parallelly
+-----------------------
+which types of task can be submitted to executorServ.submit(task)?
+
+task -> new instance of thread
+	new object which is implementing Runnable interface
+	new object which is implementing Callable interface
+
+---------------------------
+
+How do we check if ExecutorService task executed successfylly?
+We can use a Future to check the return value. Future get method would return null if the task finished successfully.
+
+Future future=executorService.submit(new Runnable(){
+	public vodid run(){
+		sysout("from executor service");
+	}
+});
+future.get();
+
+// returns null if the task has finished correctly.
+
+-------------------------------
+
+What is callable? How you execute Callable from ExecutorService?
+
+Runnable interface's run method has return type void. so it cannot return any result from executing a task. However, a Callable interface's has a return type. If you have multiple return values possible from a task, we can use the Callable interface. Example:
+
+ Callable r=()->{ Thread.sleep(3000); return "hello";};
+        ExecutorService exe= Executors.newFixedThreadPool(2);
+        Future<String> futureVal= exe.submit(r);
+        System.out.println(futureVal.get());
+        System.out.println("finished execution");
+        exe.shutdown();
+
+o/p: 	hello
+	finished execution
+
+futureVal.get() blocks the main thread from executing
+
+--------------------------------
+invoking a list of tasks
+------------------------
+public static void main(String[] args) {
+        List<Callable<String>> list=List.of(new CallableClass("task 1"),new CallableClass("task 2"),new CallableClass("task 3"));
+        try (ExecutorService exeser= Executors.newFixedThreadPool(2)){
+          List<Future<String>> result= exeser.invokeAll(list);
+            for (Future<String> stringFuture : result) {
+                System.out.println(stringFuture.get());
+            }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+--------------------------
+SOURCE: https://www.youtube.com/watch?v=ZUWs2U71vvk&t=35s
+--------------------------
+What is ThreadPool:
+
+it is a collection of treads(aka worker) what are available to perform the submitted tasks.
+Once task is completed, worker thread get back to Thread Pool and wait for new task to be assigned, means thread can be re-used.
+							Thread Pool
+
+							Thread 1
+							thread 2
+Application submitting					.
+new Tasks	->	[task1][task2]..[taskn]-> 	.
+							.
+							Thread n
+ 
+
+
+-------------------------
+What is advantage of Thread Pool?
+
+Thread creation takes time as space is allocated, to it(stack,heap, PC) 
+with the thread pool this time can avoided by resuing the thread.
+
+Overhead of managing thread lifecycle can be removed
+Increases the performace by reducing the context switching,using control over thread creation 
+--------------------------
+java.util.concurrent.*
+			   Executor
+			 <<Interface>>
+				|
+--------------------------- ExecutorService----------------------
+|			  <<Interface>>				|
+|				|				|
+|Implements			| Implements		extends	|
+|				|				|
+ThreadPoolExecutor	ForkJoinPool		ScheduledExecutorService
+								|
+						     implements	|
+								|
+						ScheduledThreadPoolExecutor		
+
+Executor Interface has only one method execute()
+while ExecutorService has multiple methods like:
+ execute(),submit(),shutdown(),invokeAll(),invokeAny(),isShutdown(), awaitTermination()
+
+------------------------------
+ThreadPoolExecutor
+
+It helps to create a customizable ThreadPool.
+
+public ThreadPoolExecutor(int corePoolSize,
+			int maxPoolSize,
+			long keepAliveTime,
+			TimeUnit unit,
+			BlockingQueue<Runnable> workQueue,
+			ThreadFactory threadFactory,
+			RejectedExecutionHandler handler)
+
+corePoolSize: number of threads are initially created and can be keep ideal in pool
+
+allowCoreThreadTimeOut: if this property is set to TRUE (by default FALSE), ideal thread kept alive till time specified by 'keepAliveTime'.
+
+keepAliveTime: Thread which get terminated after this time.
+
+maxPoolSize-> max number of thread allowed in a pool
+		if num of thread are ==corePoolSize and queue is also full then new thread is created till its less than 'maxPoolSize'.
+Excess thread, will remain in pool, this pool is not shutdown or if allowCoreThreadTimeOut is set to true then excess thread get terminated after remain idle for KeepAliveTime
+
+BlockingQueue: Que used to hold task, before they got picked by the worker thread. 
+	Bounded Queue: Queue with Fixed Capacity
+		like ArrayBlockingQueue
+	Unbonded Queue: Queue with NO FIXED capacity
+		like:LinkedBlockingQueue
+ThreadFactory:
+Factory for creating new thread. ThreadPoolExecutor use this to create new thread, this Factory provide us an interface to:
+To give custom Thread name
+TO give custom Thread prioity
+TO set Thread Daemon flag etc
+
+RejectedExecutedHandler:
+Hander for tasks that cannot be accepted by thread pool.
+Generally logging logic can be put here. For debugging purpose.
+--new ThreadPoolExecutor.AbortPolicy -> throws RejectedExecutionException
+--new ThreadPoolExecutor.callerRunsPolicy-> Executed the rejected task in the caller thread (thread that attempted to submit the task)
+--new ThreadPoolExecutor.DiscardPolicy ->silently discard the rejected task
+--new ThreadPoolExecutor.DiscardOldestPolicy -> discard the oldest task in the queue, to accommodate new task
+
+----------------------------
+
+Lifecycle of threadPool Executor:
+
+running
+shutdown
+stop (shutDownNow())
+terminated
+
+
+---------------------------
+why thread corePoolSize as 2, why not 10 or large value, what is logic behind?
+
+Generally the ThreadPool min and max size depend on various factors like:
+CPU Cores,
+JVM Memory
+Task Nature (CPU Intensibve or I/O Intensive)
+Concurrency Requirement (want high or medium or low concurrency)
+Memory Required to process a request
+Throughput etc
+
+if task is i/o intensive -> more number of threads
+if task is CPU intensive -> less number of threads
+
+and its an iterative process to update the min and max values based on monitoring
+Formula:
+
+max no of thread=no of CPU core*(1+request waiting time/processing time)
+
+
+-----------------------------------
+How to combine results of various thread executions?
+By using completable future
+
+Limitation of Future Class:
+Say we wrote a method that retrieves data from a remote server, and chose to run it in a separate thread and return a Future.
+
+1) Futures cannot be completed manually
+if the remote service is down, we cannot complete a Future manually using the latest data available
+2) Actions cannot be performed until the result is available 
+Futures cannot perform further action until the result is avialble and it doesn't notify of its completion.
+it provides a 'get' method which blocks until the result is avialble
+
+3) Attaching a callback function is not possible
+we don't have the ability to attach a callback function to the Future and have it called automatically when the Future's result is available
+4) Multiple futures cannot be chained together
+sometimes we'll need to execute a long-running task and when that task is done, we need to send its result to another long-running task and so on.
+
+5) Multiple futures cannot be combined together
+6) There is no Exception handling in Future API
+
+for above limitation we have CompletableFuture
+-------------------------
+CompletableFuture implements the Future and the CompletionStage interfaces.
+Provides a huge set of methods for creating, chaining and combining multiple Futures, it also have very comprehensive exception handling support.
+
+---------------------------
+Basic Example:
+
+CompletableFuture<String> completableFuture=new CompletableFuture<>();
+Sysout(completableFuture.get());
+
+will never output anything at this stage and we'll wait indefinitely.
+
+completableFuture.complete("Geekific");
+Sysout(completable.get()); //Geekific
+
+subsequent calls to the complete method will be ingnored
+additionally to avoid blocking of the thread for .get() method we can use .getNow("default value"); to return result or a default value if the result is not ready
+
+Executing Code Asynchronously
+------------------------------
+
+the static method runAsync and supplyAsync allow us to return a instance of Completable Future out of Runnable and Supplier funtional types
+
+public static CompltableFuture<Void> runAsync(Runnable runnable){
+	return ayncRunStage(ASYNC_POOL,runnable);
+}
+
+public static <U>CompltableFuture<U> supplyAsync(Supplier<U> supplier){
+	return ayncSupplyStage(ASYNC_POOL,supplier);
+}
+
+----------------------------------
+
+runAsync
+
+sysout("main thread :"+Thread.currentThread().getName());
+
+CompltableFuture<Void> future=CompletableFuture.runAsync(()-> {
+	TimeUnit.SECONDS.sleep(5);
+	sysout("main thread :"+Thread.currentThread().getName());
+
+});
+future.get();
+
+output
+------
+Main Thread:main
+Future Thread:ForkJoinPool.commonPool-worker-1
+
+------------------------------------
+supplyAsync
+
+sysout("main thread :"+Thread.currentThread().getName());
+
+CompltableFuture<String> future=CompletableFuture.supplyAsync(()-> {
+	TimeUnit.SECONDS.sleep(5);
+	return Thread.currentThread().getName();
+
+});
+sysout( future.get());
+
+output
+------
+Main Thread:main
+Future Thread:ForkJoinPool.commonPool-worker-1
+---------------------------------------
+
+the CompletableFuture.get() is blocking as it waits until the Future is completed and then returns the result
+
+we should be able to attach a callback to the CompltableFuture which should automatically get called when the Future completes
+
+public <U> CompletionStage<U> thenApply(Function<? super T,? extends U> fn);
+public CompletionStage<Void> thenAccept(Consumer<? super T> action);
+public CompletionStage<Void> thenRun(Runnable action);
+
+------------------------------
+thenApply
+
+CompletableFuture.supplyAsync(()-> "Like and ").thenApply(suplyResult-> suplyResult+"Subscribe to ").thenApply((thenApplyResult)->thenApplyResult+" Geekific");
+
+sysout(CompletableFuture.get());
+
+Output:
+Like and Subscribe to Geekific
+
+--------------------------------
+thenAccept
+
+CompletableFuture.supplyAsync(()-> "Like and ").thenApply(suplyResult-> suplyResult+ "Subscribe" ).thenAccept((thenApplyResult)->sout(thenApplyResult+"!!!"));
+
+output
+-------
+Like and Subscibe!!!
+
+--------------------------------
+thenRun
+doesn't have access to previous result
+
+CompletableFuture.supplyAsync(()-> "Like and ").thenApply(suplyResult-> suplyResult+ "Subscribe" ).thenRun(()->sout("Geekific")).get();
+
+output
+------
+Geekific
+
+-------------------------------------
+then...Async
+
+thenApply,thenSupply and thenRun executes with same thread, if we want to run it with different thread we can use thenAsync
+
+thenApplyAsync
+thenAcceptAsync
+thenRunAsync
+
+----------------------------------------
+thenApply vs thenCompose
+
+if a callback function returns a Completable Future then use thenCompose
+
+When to use which:
+Use thenApply
+when the next step in your asynchronous chain simply transforms the value of the previous CompletableFuture and does not involve another asynchronous operation that returns a CompletableFuture.
+Use thenCompose
+when the next step in your asynchronous chain involves another asynchronous operation that returns a CompletableFuture, and you want to avoid nested CompletableFuture instances, maintaining a flat chain of operations. This is common when you need to perform a subsequent asynchronous call based on the result of a previous one.
+
+ex: 
+
+CompletableFuture<CompletableFuture<String>> nestedFuture = CompletableFuture.supplyAsync(() -> "Hello")
+            .thenApply(result -> CompletableFuture.supplyAsync(() -> result + " World"));
+
+        nestedFuture.thenAccept(innerFuture -> innerFuture.thenAccept(System.out::println)); // Output: Hello World
+
+        // `thenCompose` Example (Flattened CompletableFuture):
+        CompletableFuture<String> flattenedFuture = CompletableFuture.supplyAsync(() -> "Hello")
+            .thenCompose(result -> CompletableFuture.supplyAsync(() -> result + " World"));
+
+        flattenedFuture.thenAccept(System.out::println); // Output: Hello World
+
+------------------------
+thenCompose vs thenCombine
+
+
+
+
+
+
+
+
+
+
+
