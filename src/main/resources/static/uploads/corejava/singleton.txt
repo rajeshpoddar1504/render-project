@@ -1,0 +1,29 @@
+//singleton class mean only single instance can be created
+// it has two variant -> lazy initialization and eager initialization
+//we can also consider thread safety in that
+public class SingletonClassLazyThreadSafe {
+    private volatile SingletonClassLazyThreadSafe instance;
+
+    private SingletonClassLazyThreadSafe(){
+    }
+    public SingletonClassLazyThreadSafe getInstance(){
+        if (instance==null){
+            synchronized (SingletonClassLazyThreadSafe.class){
+                if (instance==null){
+                    instance=new SingletonClassLazyThreadSafe();
+                }
+            }
+        }
+        return instance;
+    }
+}
+---------------------------------
+public class SingletonEager {
+
+    private SingletonEager instance=new SingletonEager();
+    private SingletonEager(){
+    }
+    public SingletonEager getInstance(){
+        return this.instance;
+    }
+}
