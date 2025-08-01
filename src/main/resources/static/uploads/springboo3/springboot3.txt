@@ -1,0 +1,86 @@
+spring boot 3 (Nov 2022)
+underlying framework: Spring Framework 6
+----------------------------
+* Jakarta
+* support for GraalVM native image compilation
+
+* minimun jdk version 17
+* spring native
+* Observability
+* Problem Details
+* Dependency Updgrade
+* HttpExchange
+
+import org.springframework.web.service.annotation.GetExchange;
+import org.springframework.web.service.annotation.HttpExchange;
+
+@HttpExchange("/posts")
+public interface PostClient {
+
+    @GetExchange
+    List<Post> getPosts();
+}
+
+----------------------------
+1. Jakarta EE9+ Baseline
+
+Spring Boot 3 requires Jakarta EE 9+, which updates the namespace for all Jakarta EE specifications from javax.* to jakarta.*
+
+2. GraalVM Native Image Support
+
+Springboot 3 fully support GraalVM 
+
+GraalVM -> helps in compiling java application into native executables -> start up fast and consume less memory
+perfect for serverless architectures and containerized environments
+
+3. Java 17 as the Minimum Version
+SpringBoot 3 uses new java features such as
+
+Records
+Pattern matching for switch
+Improved HttpClient
+Modern garbage collection techniques (e.g., ZGC, G1)
+
+4. Updated Dependencies and Library Upgrades
+
+As part of the modernization effort, dependencies have been updated to newer versions. For example:
+Hibernate 6
+Jersey 3
+Micrometer 1.10
+Tomcat 10.1 and Jetty 11
+Jackson 2.13+
+
+5. Observability Enhancements
+https://spring.io/blog/2022/10/12/observability-with-spring-boot-3
+
+Spring Boot 3 enhances observability by integrating Micrometer 1.10 and introducing the new Micrometer Tracing library (powered by Brave and OpenTelemetry).
+
+Easier integration with distributed tracing systems like Jaeger, Zipkin, and OpenTelemetry
+
+6. Problem-Details API Support
+The `application/problem+json` format for easy configurable option for exception handling and error reporting
+
+7. Configuration Changes (Files and Properties)
+Improved support for externalized configuration and caching configuration 
+
+8. Spring Security Updates
+ 
+9. Defer DataSource Initialization
+In Spring Boot 3, DataSource initialization can be deferred until the first actual interaction with it. This is particularly helpful for applications that use multiple DataSources or conditional configurations in tests or environments.
+
+10. Testcontainers Integration
+- Improved **Testcontainers** support allows developers to more easily write integration tests that rely on external services like databases or messaging brokers running inside Docker containers.
+- Testcontainers integration is now more seamless in the Spring Boot test environment.
+
+ 13. Native Testing Support
+
+- Enhanced support for writing and running tests for **native applications** built with GraalVM.
+- Spring Boot 3 ensures the testing experience remains consistent and smooth even for native apps.
+
+
+14. Advanced Data Binding and Conversion with Bind Validation
+- Improved Spring Boot's property binding validation, making it easier to write custom validations for configuration properties.
+
+
+15. Performance and Memory Improvements
+- Alongside GraalVM optimizations, there are additional enhancements in the core framework for better memory usage and startup performance, especially in cloud-native or microservices deployments.
